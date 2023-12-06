@@ -1,0 +1,15 @@
+{
+    "noImplicitThis": "false",
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+        "target": "es2017",
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "rootDir": "",
+        "sourceMap": true,
+        "incremental": true,
+        "typeRoots": ["node_modules/@types"]
+    }
+}
