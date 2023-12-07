@@ -8,11 +8,15 @@ export default class UserRouter {
         this.ROUTER
             .route('/:id/balance')
             .patch(UserController.updateUserBalance);
+
+        this.ROUTER
+            .route('/')
+            .get(UserController.getUsers);
     };
 
 	static { 
 		this.ROUTER = Router();
-		
+
 		this.prepareRouter();
 	}
 }

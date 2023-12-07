@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as cookieParser from 'cookie-parser';
 import GlobalErrorController from './controllers/GlobalErrorController';
 import UserRouter from './routers/UserRouter';
 import { ApiRoute } from './types/enums';
@@ -13,7 +12,6 @@ export default class Application {
 
 	public static configureApp = (): void => { 
 		this.app.use(express.json({ limit: '10Kb' }));
-        this.app.use(cookieParser());
 
 		this.app.use(ApiRoute.USERS, UserRouter.ROUTER);
 	

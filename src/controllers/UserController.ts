@@ -14,5 +14,14 @@ export default class UserController {
 		const responseBody = Util.createResponseBody(`${ResponseMessage.SUCCESSFUL_TRANSACTION} Amount is: ${amount}. Now your balance is: ${newBalance}`)
 
 		res.status(HttpStatus.OK).json(responseBody);
+	});
+
+	static getUsers = Util.catchAsync(async (req, res, next) => { 
+		const users = await UserService.getUsers();
+
+		const responseBody = Util.createResponseBody(null, users);
+
+		res.status(HttpStatus.OK).json(responseBody);
 	})
+
 }

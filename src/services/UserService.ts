@@ -1,5 +1,6 @@
 import UserDao from "../daos/UserDao"
 import AppError from "../errors/AppError";
+import { User } from "../models/User";
 import { ErrorMessage, HttpStatus } from "../types/enums";
 
 export default class UserService { 
@@ -13,5 +14,9 @@ export default class UserService {
 		this.validateUpdateBalanceInputs(amount);
 
 		return UserDao.updateBalance(userId, amount, transactionDate);
+	}
+
+	public static getUsers = async (): Promise<User[]> => { 
+		return UserDao.getUsers();
 	}
 }

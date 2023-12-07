@@ -15,11 +15,12 @@ describe('User (e2e)', () => {
 		TestManager.start();
 		
 		app = Application.getApp(); 
-		userId = (await User.findOne()).id;
+		
     });
 
 	afterEach(async () => { 
-		user = await User.findOne({ where: { id: userId }});
+		user = await User.findOne() as User;
+		userId = user.id;
 
 		await user.update({ balance: user.balance + 1000 });
 	})
@@ -45,8 +46,8 @@ describe('User (e2e)', () => {
 
 		const userFresh = await User.findOne({ where: { id: userId }});
 
-		expect(user.balance > userFresh.balance);
-		expect(user.balance - randomNumber).toBe(userFresh.balance);
+		expect(user.balance > userFresh!.balance);
+		expect(user.balance - randomNumber).toBe(userFresh!.balance);
     });
 
     it('PATCH /users/:userId/balance should increase balance when amount is positive', async () => {
@@ -57,6 +58,6 @@ describe('User (e2e)', () => {
 		const userFresh = await User.findOne({ where: { id: userId }});
 
 		expect(res.status).toBe(HttpStatus.FORBIDDEN);
-		expect(user.balance - randomNumber).toBe(userFresh.balance);
+		expect(user.balance - randomNumber).toBe(userFresh!.balance);
     });
 });

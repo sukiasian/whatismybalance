@@ -21,7 +21,11 @@ export default class UserDao {
 		return currentUserBalance + amount;
 	}
 
-	static updateBalance = async (userId: string, amount: number, transactionDate: Date): Promise<number> => { 
+	public static getUsers = async (): Promise<User[]> => { 
+		return User.findAll();
+	}
+
+	public static updateBalance = async (userId: string, amount: number, transactionDate: Date): Promise<number> => { 
 		const transaction = await Database.SEQUELIZE.transaction(this.transactionOptions);
 
 		const maxTrials = 10; 
