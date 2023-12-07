@@ -70,6 +70,11 @@ export default class GlobalErrorController {
                 GlobalErrorController.sendErrorProd(err, res);
 
                 break;
+
+			default:
+				GlobalErrorController.sendErrorDev(err, res);
+
+                break;
         }
     };
 }

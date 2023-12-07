@@ -9,7 +9,7 @@ export default class Server {
 	}
 
 	public static start = (): void => { 
-		this.SERVER = Application.getApp().listen(7070, () => { 
+		this.SERVER = Application.getApp().listen(this.PORT, () => { 
 			console.log(`Server is listening on ${this.PORT }`);
 		})
 	}

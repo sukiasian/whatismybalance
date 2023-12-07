@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize-typescript";
 import { SyncOptions } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import { User } from "../models/User";
 
 
@@ -7,7 +7,6 @@ export default class Database {
 	static SEQUELIZE: Sequelize; 
 
 	static { 	
-		// @ts-ignore
 		this.SEQUELIZE = new Sequelize({
 			dialect: 'postgres',
 			dialectOptions: {
@@ -25,14 +24,21 @@ export default class Database {
 				acquire: 30000,
 				idle: 10000,
 			},
+
 			models: [User]
 		});
+	}
+
+	public static createTestUser = async (): Promise<void> => { 
+		if((await User.findAll()).length === 0) { 
+			await User.create({ name: 'Test user' });
+		}
 	}
 
 	public static connect = async (): Promise<void> => { 
 		try {
 			const syncOptions: SyncOptions = {
-				force: true
+				force: false
 			};
 
 			await this.SEQUELIZE.sync(syncOptions);
@@ -41,5 +47,9 @@ export default class Database {
 		} catch (err) {
 			console.log(err);
 		}
+	}
+
+	public static disconnect = async(): Promise<void> => { 
+		this.SEQUELIZE.close();
 	}
 }

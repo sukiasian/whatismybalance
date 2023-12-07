@@ -18,6 +18,10 @@ export default class Application {
 		this.app.use(ApiRoute.USERS, UserRouter.ROUTER);
 	
 		this.app.use(GlobalErrorController.handle)
+
+		this.app.all('*', (req, res) => {
+			res.status(404);
+		})
 	}
 
 	static { 

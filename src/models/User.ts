@@ -1,5 +1,5 @@
-import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { Optional } from 'sequelize';
+import { AfterUpdate, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
 interface UserAttributes {
     id: number;
@@ -14,8 +14,19 @@ export class User extends Model<User> {
 		type: DataType.UUID,
 		defaultValue: DataType.UUIDV4 
     })
-    public id: number;
+    public id: string;
 
     @Column({ type: DataType.STRING, allowNull: false  })
     public name: string;
+
+	@Column({ type: DataType.FLOAT, defaultValue: 10000 })
+	public balance: number;
+
+	@Column({ type: DataType.INTEGER, defaultValue: 0 })
+	public version: number;
+
+	@AfterUpdate
+	public static incrementVersion(instance: User): void { 
+		instance.version += 1; 
+	}
 }

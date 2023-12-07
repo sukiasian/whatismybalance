@@ -62,8 +62,15 @@ export enum ResponseStatus {
     ERROR = 'Error occured.',
 }
 
+export enum ResponseMessage { 
+	SUCCESSFUL_TRANSACTION = 'The transaction is processed.'
+}
+
 export enum ErrorMessage { 
-	
+	INSUFFICIENT_FUNDS = 'Insufficient funds on your account. Transaction is cancelled.',
+	MISSING_USER_ID = 'User ID is missing.',
+	AMOUNT_SHOULD_BE_A_NUMBER = 'Amount should be a number.',
+	USER_NOT_FOUND = 'User is not found'
 }
 
 export enum ApiRoute { 

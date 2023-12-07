@@ -10,6 +10,9 @@
         "rootDir": "",
         "sourceMap": true,
         "incremental": true,
+		"types": ["jest"],
         "typeRoots": ["node_modules/@types"]
-    }
+    },
+	"exclude": ["node_modules", "tests/*", "dist"],
+    "include": ["**/*"]
 }
